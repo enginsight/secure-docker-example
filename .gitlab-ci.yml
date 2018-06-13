@@ -1,7 +1,7 @@
 stages:
  - security
 
-security:
+Insecure Docker Image:
   stage: security
   image: enginsight/aws-cli
   tags:
@@ -13,3 +13,16 @@ security:
       --env accessKeySecret=${accessKeySecret} 
       --env apiUrl=${apiUrl}
         insecure_container /bin/bash /vulnerabilities.sh
+
+Secure Docker Image:
+  stage: security
+  image: enginsight/aws-cli
+  tags:
+    - gitlab-runner
+  script:
+    - docker build -t insecure_container .
+    - docker run 
+      --env accessKeyId=${accessKeyId} 
+      --env accessKeySecret=${accessKeySecret} 
+      --env apiUrl=${apiUrl}
+        insecure_container /bin/bash -c "yum update -y && bash /vulnerabilities.sh"
