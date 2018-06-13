@@ -1,0 +1,15 @@
+stages:
+ - security
+
+security:
+  stage: security
+  image: enginsight/aws-cli
+  tags:
+    - gitlab-runner
+  script:
+    - docker build -t insecure_container .
+    - docker run 
+      --env accessKeyId=${accessKeyId} 
+      --env accessKeySecret=${accessKeySecret} 
+      --env apiUrl=${apiUrl}
+        insecure_container /bin/bash /vulnerabilities.sh
