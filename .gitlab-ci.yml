@@ -12,6 +12,7 @@ Insecure Container:
   script:
     - docker build -t insecure_container .
     - docker run 
+      --volume $(pwd)/vulnerabilities.sh:/vulnerabilities.sh
       --env accessKeyId=${accessKeyId} 
       --env accessKeySecret=${accessKeySecret} 
       --env apiUrl=${apiUrl}
@@ -25,6 +26,7 @@ Secure Container:
   script:
     - docker build -t secure_container .
     - docker run 
+      --volume $(pwd)/vulnerabilities.sh:/vulnerabilities.sh
       --env accessKeyId=${accessKeyId} 
       --env accessKeySecret=${accessKeySecret} 
       --env apiUrl=${apiUrl}
