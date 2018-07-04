@@ -1,3 +1,5 @@
+# For now, just CentOS and Redhat are supported.
+# If you use Debian or Ubuntu, replace "yum" with "apt-get".
 yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm > /dev/null
 yum -y install jq curl > /dev/null
 
